@@ -1,0 +1,62 @@
+
+**SOC Alert Details**
+
+| SEVERITY | DATE                  | RULE NAME                                | EVENTID | TYPE        |
+|----------|-----------------------|------------------------------------------|---------|-------------|
+| High     | Feb 25, 2022 11:34 AM | SOC165 - Possible SQL Injection Payload Detected | 115     | Web Attack  |
+
+**Event Details:**
+- EventID: 115
+- Event Time: Feb 25, 2022 11:34 AM
+- Rule: SOC165 - Possible SQL Injection Payload Detected
+- Level: Security Analyst
+- Hostname: WebServer1001
+- Destination IP Address: 172.16.17.18
+- Source IP Address: 167.99.169.17
+- HTTP Request Method: GET
+- Requested URL: [https://172.16.17.18/search/?q=%22%20OR%201%20%3D%201%20--%20-](https://172.16.17.18/search/?q=%22%20OR%201%20%3D%201%20--%20-)
+- User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+
+**Alert Details:**
+- Alert Trigger Reason: Requested URL Contains OR 1 = 1
+- Device Action: Allowed
+
+**Playbook Answers:**
+1. **Is Traffic Malicious?**
+   - User Answer: Malicious
+2. **What Is The Attack Type?**
+   - User Answer: SQL Injection
+3. **Check If It Is a Planned Test**
+   - Correct Answer: Not Planned
+
+**Playbook Note:**
+
+- Why was the Alert Triggered?
+  - Rule Name: SOC165 - Possible SQL Injection Payload Detected
+  - HTTP Request method: GET
+  - Requested URL Contains OR 1 = 1 - Confirmed
+  - User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+
+- Collecting Data:
+  - Source IP Address: 167.99.169.17
+  - Hostname: Webserver1001
+  - Username: webadmin
+  - Last Logon time: Feb 10, 2022 11:12 PM
+  - OS: Windows Server 2019
+  - Ownership of the IP address: DigitalOcean
+  - HTTP Response Status Line: 500
+  - HTTP Response Size: 948
+
+- **What we know (Playbook):**
+  1. There has been a **SQL Injection attack** performed on the **“id” parameter** on the web application’s main page.
+  2. The requests came from the IP address: **192.168.31.174.**
+  3. **Because there have been several requests per second, this attack has been performed by an automated vulnerability scanning tool.**
+  4. The **complex nature** of the payloads supports the claim in # 3.
+  5. The response was successful due to the response size.
+
+**Alert Answers:**
+- **Is this alert True Positive or False Positive?**
+  - User Answer: TP
+
+**Alert Note:**
+- SQL Injection
