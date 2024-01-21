@@ -1,0 +1,91 @@
+# Cross-Site Scripting (XSS) Overview
+
+## Introduction
+Cross-Site Scripting (XSS) is a web security vulnerability categorized as an injection attack, where malicious code is injected into legitimate web applications. This vulnerability allows the execution of malicious scripts within the context of a user's browser.
+
+## Prevention in Modern Web Frameworks
+Many modern web application frameworks have implemented preventive measures to mitigate the risk of Cross-Site Scripting attacks. These measures include input validation, output encoding, and other security practices to ensure that user-supplied data is handled securely.
+
+## Persistent Challenges
+Despite advancements in security practices, XSS vulnerabilities still persist. Several factors contribute to this, such as defiance to secure coding practices, instances where frameworks are not utilized, or cases where the frameworks themselves may have vulnerabilities.
+
+## Importance of Data Sanitization
+One common cause of XSS vulnerabilities is the lack of proper data sanitization. When user-input data is not effectively sanitized before being processed or displayed, it creates an avenue for attackers to inject malicious scripts.
+
+# XSS Types
+
+XSS, or Cross-Site Scripting, manifests in three different types:
+
+1. **Reflected XSS (Non-Persistent):**
+   - Non-persistent type where the XSS payload must be included in the request.
+   - Commonly found, the payload is reflected in the response.
+
+2. **Stored XSS (Persistent):**
+   - Allows the attacker to permanently upload the XSS payload to the web application.
+   - Considered the most dangerous type as the payload persists.
+
+3. **DOM Based XSS:**
+   - Involves executing the attack payload by modifying the DOM in the victim's browser.
+   - The client-side code runs unexpectedly, impacting the DOM environment.
+
+(Reference: [OWASP](https://owasp.org/))
+
+# How Attackers Leverage XSS Attacks
+
+While XSS may seem less critical than other attack methods as a client-based approach, its impact should not be underestimated. Attackers leverage XSS attacks to perform various malicious actions:
+
+- **Steal User’s Session Information**
+- **Initiate Processes that a User Can Execute**
+- **Capture Credentials**
+
+## How to Prevent XSS Vulnerability
+
+To prevent XSS vulnerabilities, implement the following measures:
+
+1. **Sanitize Data from Users:**
+   - Never trust data coming from a user. Encode user data with HTML encoding using special characters before processing and saving.
+
+2. **Use a Framework:**
+   - Most frameworks include preventive measures against XSS attacks.
+
+3. **Use the Framework Correctly:**
+   - Ensure proper utilization of the sanitation features provided by your framework.
+
+4. **Keep Your Framework Up to Date:**
+   - Regularly update your framework to patch any security vulnerabilities.
+
+## Detecting XSS Attacks
+
+As a SOC analyst, detecting XSS attacks is crucial due to their prevalence in web applications. Consider the following:
+
+- **Look for Keywords:**
+  - Identify keywords such as “alert” and “script” commonly used in XSS payloads.
+
+- **Familiarize Yourself with Frequently Used XSS Payloads:**
+  - Attackers often use the same payloads to identify vulnerabilities before exploiting them. Get familiarized with these payloads to enhance detection.
+
+- **Check for Special Characters:**
+  - Examine user data for frequently used special characters in XSS payloads, such as greater than (>) or lesser than (<).
+
+### Additional Insights
+
+According to a study by Acunetix, 75% of cyber attacks on web applications involve XSS. Given its frequency, SOC analysts are likely to encounter XSS attacks regularly in their careers.
+
+For a collection of frequently used XSS payloads, you can test some examples (https://www.acunetix.com/blog/web-security-zone/test-xss-skills-vulnerable-sites/).
+
+# Security Analysis and XSS Vulnerabilities
+
+The statement highlights a security concern tied to JavaScript and its potential involvement in Cross-Site Scripting (XSS) vulnerabilities. XSS is a web security vulnerability where attackers inject malicious scripts into web pages, executed by victims' browsers. JavaScript is often exploited for carrying out XSS attacks.
+
+## URL Decoding and Security Analysis
+
+The mention of URL decoding suggests a crucial aspect of security analysis. Decoding Uniform Resource Locators (URLs) involved in requests aids in understanding their nature. URL decoding, converting percent-encoded characters to their original form, is particularly relevant in the context of security. It unveils potentially encoded payloads or parameters used in XSS attacks.
+
+## Heightened Awareness with JavaScript
+
+In summary, the research emphasizes the significance of JavaScript presence, signaling a heightened awareness of potential XSS vulnerabilities. Expanding the security analysis, attention is drawn to examining the dates of requests. A notably high frequency (every 3-4 seconds) appears improbable for human input, prompting further review.
+
+## Automated Threat Detection
+
+While definitively concluding excessive requests per second is challenging, the User-Agent information becomes crucial. The User-Agent, associated with an automated library like "urllib," indicates likely automated vulnerability scanner tool usage. This additional context strengthens the understanding of potential security threats, underscoring the need for vigilance against automated attacks, potentially linked to XSS vulnerabilities.
+
