@@ -52,11 +52,25 @@
   2. The requests came from the IP address: **192.168.31.174.**
   3. **Because there have been several requests per second, this attack has been performed by an automated vulnerability scanning tool.**
   4. The **complex nature** of the payloads supports the claim in # 3.
-  5. The response was successful due to the response size.
+  5. The response was unsuccessful due to the response size.
 
 **Alert Answers:**
 - **Is this alert True Positive or False Positive?**
   - User Answer: TP
 
 **Alert Note:**
-- SQL Injection
+
+1. **Discovery of Requested URL:**
+   - The requested URL was subjected to URL Decoding to examine the payload sent by the attacker.
+   - Post URL Decoding, it was conclusively identified as a SQL Injection attack.
+
+2. **Log Management Page Analysis:**
+   - Filtering requests by source address on the Log Management page revealed additional suspicious requests.
+   - Upon closer inspection, all identified requests were found to be associated with the SQL Injection vulnerability.
+
+3. **Response Size and Status Examination:**
+   - Analyzing the response size of all requests indicated uniformity, with consistent response sizes.
+   - Notably, all requests resulted in a response status of 500.
+
+## Conclusion
+The SQL Injection attack appears to be unsuccessful, as successful attacks typically result in varied response sizes and a 200 response status. The consistent response size of 500 suggests that the attack did not achieve its intended outcome.
