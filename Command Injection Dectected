@@ -1,0 +1,59 @@
+| SEVERITY | DATE                  | RULE NAME                                        | EVENTID | TYPE       | ACTION  |
+|----------|-----------------------|--------------------------------------------------|---------|------------|---------|
+| High     | Feb 28, 2022, 04:12 AM | SOC168 - Whoami Command Detected in Request Body | 118     | Web Attack | Allowed |
+
+**Event Details:**
+- EventID: 118
+- Event Time: Feb 28, 2022, 04:12 AM
+- Rule: SOC168 - Whoami Command Detected in Request Body
+- Level: Security Analyst
+- Hostname: WebServer1004
+- Destination IP Address: 172.16.17.16
+- Source IP Address: 61.177.172.87
+- HTTP Request Method: POST
+- Requested URL: [https://172.16.17.16/video/](https://172.16.17.16/video/)
+- User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)
+- Alert Trigger Reason: Request Body Contains whoami string
+- Device Action: Allowed
+
+# Collecting Data
+
+## 1. Source IP Address: 61.177.172.87
+
+## 2. If the traffic is coming from outside (Internet): 
+   - Ownership of IP address (static or pool): Who owns it? Chinanet
+   - Reputation of IP Address? Malicious 
+
+## 3. If the traffic is coming from the company network:
+   - Hostname:
+   - Username:
+   - Last Logon time:
+
+
+### Firewall log: The string [?c=cat /etc/passwd] appears to be a part of a URL query parameter. In the context of web security, it might indicate an attempt to perform command injection or remote code execution.
+
+### Breaking it down:
+
+"?" typically indicates the start of a query string in a URL. "c=" suggests a parameter named "c" is being used.
+cat /etc/passwd is a Unix command that reads the contents of the /etc/passwd file, which contains information about       user accounts on a Unix-like operating system.
+
+If this string is injected into a vulnerable web application, an attacker might be attempting to execute the cat /etc/passwd command on the server, potentially trying to retrieve sensitive information about user accounts.
+
+## What we know:
+
+1. **Web Attack on "id" Parameter:**
+   - Yes, further analysis indicates an attempt to perform a potentially malicious action known as command injection or remote code execution.
+
+2. **Source IP Address:**
+   - 61.177.172.87
+
+3. **Attack Execution:**
+   - The attack appears to be manual, as evidenced by the limited number of requests and the time intervals between each request.
+
+4. **Payload Analysis:**
+   - Does the intricate nature of the payloads provide support for certain aspects or functionalities within the context of the system or application?
+
+5. **Attack Success:**
+   - Yes, it has been determined that the response from the attackers was successful as the HTTP response permits a status code of 200.
+ 
+ 
