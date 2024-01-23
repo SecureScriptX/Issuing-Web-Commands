@@ -1,0 +1,29 @@
+**Event Information:**
+- EventID: 116
+- Event Time: Feb 26, 2022, 06:56 PM
+- Rule: SOC166 - Javascript Code Detected in Requested URL
+- Level: Security Analyst
+
+**Host Information:**
+- Hostname: WebServer1002
+- Destination IP Address: 172.16.17.17
+- Source IP Address: 112.85.42.13
+
+**HTTP Request Details:**
+- Method: GET
+- Requested URL: [https://172.16.17.17/search/?q=<$script>javascript:$alert(1)<$/script>](https://172.16.17.17/search/?q=<$script>javascript:$alert(1)<$/script>)
+- User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+- Port: 443
+
+**HTTP Response Details:**
+- Response Code: 302
+
+**Analysis of XSS Attack Attempt:**
+
+Upon inspecting the query parameter, it is evident that there exists an XSS payload. Given that the payload is embedded in the URL, it has been identified as a "Reflected type" XSS attack.
+
+Further investigation, specifically filtering by source IP address on the Log Management page, reveals that the attacker attempted various XSS payloads.
+
+Notably, the requests associated with the attack were observed to be redirected with a 302 status code. Consequently, the attack did not achieve its intended success.
+
+Considering the unsuccessful outcome, escalation to the next level is deemed unnecessary. 
