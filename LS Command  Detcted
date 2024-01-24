@@ -1,0 +1,14 @@
+## Severity: High
+
+**Date:** Feb 27, 2022, 12:36 AM
+
+**Rule Name:** SOC167 - LS Command Detected in Requested URL
+
+**EventID:** 117
+
+**Type:** Web Attack
+
+**Action:** Allowed
+
+### Event Details:
+
