@@ -1,14 +1,23 @@
-## Severity: High
+### Incident Details
 
-**Date:** Feb 27, 2022, 12:36 AM
+| SEVERITY | DATE CLOSED | RULE NAME | EVENTID | TYPE      | RESULT     | ACTION        |
+|----------|-------------|-----------|---------|-----------|------------|---------------|
+| High     | Jan 24, 2024, 10:48 AM | SOC167 - LS Command Detected in Requested URL | 117 | Web Attack | |               |
 
-**Rule Name:** SOC167 - LS Command Detected in Requested URL
+#### Event Details
+- EventID: 117
+- Event Time: Feb 27, 2022, 12:36 AM
+- Rule: SOC167 - LS Command Detected in Requested URL
+- Answer: False Positive (+5 Point)
 
-**EventID:** 117
+#### Analyst Note
+Non-malicious
 
-**Type:** Web Attack
+### Analysis Note
 
-**Action:** Allowed
+Upon inspecting the Request URL, it becomes apparent that the term "skills" is being searched on the LetsDefend Blog page. However, the inclusion of the letters "ls" at the end of the word led to the incorrect triggering of the rule.
 
-### Event Details:
+*This incident is a false positive alarm.*
+
+To ensure accuracy, a thorough examination of the Browser History on the device from the Endpoint Security page confirms the absence of any actual attack.
 
