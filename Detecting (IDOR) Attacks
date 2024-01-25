@@ -1,0 +1,49 @@
+## 🛡️ What is IDOR?
+
+Insecure Direct Object Reference (IDOR) is a critical vulnerability stemming from inadequate or improperly implemented authorization mechanisms. It allows unauthorized access to objects, putting sensitive information at risk. As the top-ranked security risk in OWASP's 2021 list, IDOR, or "Broken Access Control," demands attention.
+
+### 💻 How IDOR Works:
+
+Unlike other web vulnerabilities, IDOR isn't caused by unsanitary conditions but rather by manipulating parameters sent to a web application. Attackers exploit this vulnerability to access objects belonging to others, potentially reading, altering, or erasing contents.
+
+### 🔍 Example Scenario:
+
+Consider a basic web app retrieving user data based on the "id" variable:
+URL: [https://letsdefend.io/get_user_information?id=1](https://letsdefend.io/get_user_information?id=1)
+
+If the app doesn't verify if the "id" in the request belongs to the requester, anyone can access personal information by changing the "id" parameter. This vulnerability is IDOR.
+
+### 🤔 How Attackers Exploit IDOR:
+
+Attackers exploit IDOR to:
+- Steal personal information
+- Access unauthorized documents
+- Conduct unauthorized processes (e.g., deletion, alteration)
+
+### 🔐 Preventing IDOR:
+
+To secure against IDOR, always verify the requester's authority. Remove unnecessary parameters, taking only essential ones. In the example, session information could replace the need for the "id" parameter.
+
+### 🕵️ Detecting IDOR Attacks:
+
+IDOR attacks are challenging to detect compared to other attacks. Key methods include:
+- Checking all parameters for vulnerabilities
+- Monitoring the number of requests for the same page
+- Identifying patterns in requests (e.g., sequential values like id=1, id=2)
+
+### IDOR Attack Investigation
+
+#### Questions to Address:
+
+1. **IP Address of Attacker:**
+   - What is the IP address of the attacker who executed the IDOR attack?
+
+2. **Attack Timeline:**
+   - When did the attack commence?
+
+3. **Attack Success:**
+   - Was the IDOR attack successful?
+
+4. **Automated Tool Usage:**
+   - Was the attack carried out using an automated tool? (Nessus, OpenVas, Nikto)
+
