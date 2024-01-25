@@ -1,0 +1,81 @@
+# Event Details
+
+- **Event ID:** 120
+- **Event Time:** Mar 01, 2022, 10:10 AM
+- **Rule:** SOC170 - Passwd Found in Requested URL - Possible LFI Attack
+- **Level:** Security Analyst
+- **Hostname:** WebServer1006
+- **Destination IP Address:** 172.16.17.13
+- **Source IP Address:** 106.55.45.162
+- **HTTP Request Method:** GET
+- **Requested URL:** [https://172.16.17.13/?file=../../../../etc/passwd]
+- **User-Agent:** Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.1.4322)
+
+# Firewall log(s)
+
+| Field              | Type       |
+|------------------- |------------|
+| source_address     | Firewall   |
+| source_port        | 106.55.45.162 |
+| destination_address| 172.16.17.13  |
+| destination_port   | 443          |
+| time               | Mar 01, 2022, 10:10 AM |
+
+# Raw Log
+
+- **Request URL:** [https://172.16.17.13/?file=../../../../etc/passwd]
+- **User-Agent:** Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.1.4322)
+- **Request Method:** GET
+- **Device Action:** Permitted
+- **HTTP Response Size:** 0
+- **HTTP Response Status:** 500
+
+# Alert Details
+
+- **Alert Trigger Reason:** URL Contains passwd
+- **Device Action:** Allowed
+
+# Why was the Alert Triggered?
+
+1. **Rule Name:** Passwd Found in Requested URL - Possible LFI Attack
+2. **HTTP Request method:** GET
+3. **Requested URL:** 172.16.17.13
+4. **Alert Trigger Reason:** ../../../../etc/passwd
+5. **User-Agent:** Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.1.4322)
+
+# Collecting Data
+
+1. **Source IP Address:**
+2. If the traffic is coming from outside (Internet):
+   - **Ownership of IP address (static or pool):** Who owns it? Shenzhen Tencent Computer Systems Company Limited
+   - **Reputation of IP Address:** malicious
+
+
+# Conclusion
+
+**What we know:**
+
+1. **LFI Attack on "id" Parameter:**
+   - Yes
+
+2. **Source IP Address of Requests:**
+   - 106.55.45.162
+
+3. **Execution of the Attack:**
+   - Manual, indicated by the number of attempts.
+
+4. **Payload Analysis:**
+   - I believe the specific intention of the attacker is to exploit vulnerabilities and gain privileges within the system or application.
+
+5. **Attack Success Status:**
+   - The attempt was unsuccessful, resulting in a response with a HTTP status code 500.
+
+# Analysis of LFI Attack
+
+The presence of an LFI attack, particularly targeting the "URL" parameter, raises concerns about potential security vulnerabilities within the web application. The manual nature of the attack, indicated by the repeated attempts, implies a deliberate and focused effort by the attacker. The intricate payloads used in the attack suggest a level of sophistication and an intent to manipulate the system for malicious purposes.
+
+While the attempt was unsuccesful, and the server responded with an error (HTTP status code 500), it is crucial to conduct a thorough security analysis to identify and address any underlying vulnerabilities. Additionally, monitoring and further investigation into the source IP address (106.55.45.162) are recommended to mitigate future potential threats.
+
+## Summary
+
+The web application has experienced a targeted LFI attack with a manual execution. This underscores the importance of ongoing security measures and continuous monitoring to safeguard against potential exploits and unauthorized access.
