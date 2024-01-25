@@ -1,0 +1,73 @@
+
+# Security Event Details
+
+| SEVERITY | DATE                  | RULE NAME                              | EVENTID | TYPE      | ACTION   |
+|----------|-----------------------|----------------------------------------|---------|-----------|----------|
+| Medium   | Feb 28, 2022, 10:48 PM | SOC169 - Possible IDOR Attack Detected | 119     | Web Attack |          |
+
+## Event Details
+- **EventID:** 119
+- **Event Time:** Feb 28, 2022, 10:48 PM
+- **Rule:** SOC169 - Possible IDOR Attack Detected
+- **Level:** Security Analyst
+- **Hostname:** WebServer1005
+- **Destination IP Address:** 172.16.17.15
+- **Source IP Address:** 134.209.118.137
+- **HTTP Request Method:** POST
+- **Requested URL:** [https://172.16.17.15/get_user_info/](https://172.16.17.15/get_user_info/)
+- **User-Agent:** Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.1.4322)
+
+## Alert Trigger Reason
+- Consecutive requests to the same page
+
+## Device Action
+- Allowed
+
+# IDOR Alert Investigation
+
+## Why was the Alert Triggered?
+
+1. **Rule Name:** SOC169 - Possible IDOR Attack Detected
+2. **HTTP Request Method:** POST
+3. **Requested URL:** [https://172.16.17.15/get_user_info/](https://172.16.17.15/get_user_info/)
+4. **Alert Trigger Reason:** Consecutive requests to the same page
+5. **User-Agent:** Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.1.4322) Older version of IE on a Windows XP System?
+
+## Collecting Data
+
+1. **Source IP Address:** 134.209.118.137
+
+### If the traffic is coming from outside (Internet):
+   - **Ownership of IP Address:** DIGITALOCEAN-ASN 
+   - **Reputation of IP Address:** Malicious
+
+### If the traffic is coming from the company network:
+   - **Hostname:** 
+   - **Username:** 
+   - **Last Logon Time:** 
+
+## Conclusion
+
+### What we know:
+
+1. **IDOR Attack on the "id" Parameter:**
+   - Yes
+
+2. **Source IP Address of Requests:**
+   - 134.209.118.137
+
+3. **Execution of the Attack:**
+   - Manual scan, indicated by multiple attempts and timeframe
+
+4. **Success of the Attack:**
+   - Received a 200 response code (success)
+
+5. **Destination Port:**
+   - 443
+
+6. **Source IP Details:**
+   - Associated with DIGITALOCEAN-ASN
+   - Reputation marked as potentially malicious
+
+**In Summary:**
+The security event indicates a confirmed IDOR attack from the external source (IP: 134.209.118.137). Further monitoring and analysis (Tier 2) are crucial to understand the full threat scope and potential impacts on the system's security. 
